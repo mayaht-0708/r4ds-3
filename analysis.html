@@ -76,7 +76,57 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>duckdb keeps downloaded extensions and secrets in a temporary directory:
+ℹ /tmp/RtmpkcpDpX/duckdb
+This is removed when the R session ends.
+• Extensions are re-downloaded each session.
+• Secrets are lost.
+ℹ Run duckdb(shared_home = TRUE) (or create ~/.duckdb) to keep them (suitable for most users).
+ℹ Run duckdb(shared_home = FALSE) to accept the temporary directory (and silence this message).
+ℹ See ?duckdb_storage for details and alternatives.</code></pre>
+</div>
+</div>
+<div class="cell" data-cache.extra="&quot;2026-10-23 14:50:16&quot;">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 51 × 5
+   stateabb state_name           rla_2015 rla_2023 score_change
+   &lt;chr&gt;    &lt;chr&gt;                   &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;
+ 1 AL       Alabama               -0.0521  -0.196       -0.144 
+ 2 AK       Alaska                -0.110   -0.368       -0.258 
+ 3 AZ       Arizona               -0.0492  -0.165       -0.116 
+ 4 AR       Arkansas              -0.0440  -0.197       -0.153 
+ 5 CA       California            -0.128   -0.150       -0.0212
+ 6 CO       Colorado               0.137    0.0599      -0.0775
+ 7 CT       Connecticut            0.257    0.0142      -0.243 
+ 8 DE       Delaware               0.0755  -0.259       -0.334 
+ 9 DC       District Of Columbia  -0.245   -0.293       -0.0478
+10 FL       Florida                0.142   -0.0174      -0.160 
+# ℹ 41 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 </main>
 <!-- /main column -->
