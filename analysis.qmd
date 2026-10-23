@@ -31,7 +31,8 @@ score_change <- dbplyr_dist |>
     by = "district_id"
   ) |>
   mutate(rla_change = rla_2023 - rla_2015) |>
-  select(district_id, district_name, state, rla_change)
+  select(district_id, district_name, state, rla_change) |>
+  collect()
 state_scores <- tbl(con, "state_scores")
 state_change <- state_scores |>
   filter(year == 2015, !is.na(rla_score)) |>
@@ -43,30 +44,25 @@ state_change <- state_scores |>
     by = "stateabb"
   ) |>
   mutate(score_change = rla_2023 - rla_2015) |>
-  select(stateabb, state_name, rla_2015, rla_2023, score_change)
-state_change |>
+  select(stateabb, state_name, rla_2015, rla_2023, score_change) |>
   collect() |>
   print()
 ```
 
 ```{r}
-district_changes <- score_change |>
-  collect()
-
-ggplot(district_changes, aes(x = rla_change, fill = rla_change > 0)) +
+ggplot(score_change, aes(x = rla_change, fill = rla_change > 0)) +
   geom_histogram() +
   geom_vline(xintercept = 0) +
   scale_fill_manual(values = c(`TRUE` = "steelblue", `FALSE` = "tomato"), guide = "none") +
   labs(
     title = "Change in District Reading Scores",
-    subtitle = paste("Districts with data in both years:", nrow(district_changes)),
+    subtitle = paste("Districts with data in both years:", nrow(score_change)),
     caption = "Change is the 2023 score minus the 2015 score."
   )
 ```
 
 ```{r}
 state_changes <- state_change |>
-  collect() |>
   mutate(state_name = fct_reorder(state_name, rla_2023))
 
 ggplot(state_changes, aes(y = state_name)) +
